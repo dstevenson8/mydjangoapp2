@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Hello Form</title>
-</head>
+<head><title>Hello Form</title></head>
 <body>
     <h1>Say Hello</h1>
     <form method="post">
         {% csrf_token %}
-        <label>Your name:</label>
-        <input type="text" name="name">
+        <input type="text" name="name" placeholder="Your name">
         <button type="submit">Submit</button>
     </form>
 
-    {% if name %}
-        <h2>Hello, {{ name }}!</h2>
-    {% endif %}
+    <h2>Past Entries:</h2>
+    <ul>
+        {% for entry in names %}
+            <li>{{ entry.name }} ({{ entry.submitted_at }})</li>
+        {% empty %}
+            <li>No entries yet.</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
