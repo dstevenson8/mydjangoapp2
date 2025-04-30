@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import render
 
 def hello_view(request):
     name = None
