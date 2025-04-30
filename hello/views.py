@@ -1,14 +1,12 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from .models import NameEntry
 
 def hello_view(request):
-    name = None
     if request.method == "POST":
         name = request.POST.get("name")
         if name:
             NameEntry.objects.create(name=name)
-            return redirect('/')
-            
+            return redirect('/hello/')  # redirect to prevent duplicate submission
+
     names = NameEntry.objects.order_by('-submitted_at')
-    return render(request, "hello.html", {"name": name})
+    return render(request, "hello.html", {"names": names})
