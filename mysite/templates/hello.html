@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Form</title>
+</head>
+<body>
+    <h1>Say Hello</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>Your name:</label>
+        <input type="text" name="name">
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if name %}
+        <h2>Hello, {{ name }}!</h2>
+    {% endif %}
+</body>
+</html>

@@ -1,4 +1,7 @@
 from django.http import HttpResponse
 
-def say_hello(request):
-    return HttpResponse("Hello from Django!")
+def hello_view(request):
+    name = None
+    if request.method == "POST":
+        name = request.POST.get("name")
+    return render(request, "hello.html", {"name": name})
